@@ -1,0 +1,3 @@
+[submodule "include/lcmysql"]
+	path = include/lcmysql
+	url = https://github.com/sauntor/lcmysql.git
