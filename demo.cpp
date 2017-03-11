@@ -158,6 +158,19 @@ int main(int argc, const char **argv)
         builder << 33;
         shared_ptr<Label> label( QueryOne<Label*>(*con, builder, mapper) );
         cout << label->id << " = " << label->value << endl;
+
+        builder = SqlBuilder();
+        builder += "update test set label = id where id > ? and not (label like ?)";
+        builder << 3 << "; drop table test; '%llo%";
+        std::uint64_t count = Delete(*con, builder);
+        cout << "updated count = " << count << endl;
+
+        builder = SqlBuilder();
+        builder += "delete from test where id < ?";
+        builder << 2;
+        count = Update(*con, builder);
+        cout << "deleted count = " << count << endl;
+
         cout << "========================" << endl;
 	} catch (sql::SQLException &e) {
 		/*
