@@ -21,6 +21,7 @@
 #include <cppconn/statement.h>
 #include <cppconn/connection.h>
 #include <cppconn/datatype.h>
+#include <cppconn/variant.h>
 #include <mysql_driver.h>
 #include <mysql_connection.h>
 
@@ -158,6 +159,14 @@ int main(int argc, const char **argv)
         builder << 33;
         shared_ptr<Label> label( QueryOne<Label*>(*con, builder, mapper) );
         cout << label->id << " = " << label->value << endl;
+
+        builder = SqlBuilder();
+        builder += "select * from test where id = ?";
+        builder << 33;
+        SqlArg::Type types[] = {SqlArg::Type::Int, SqlArg::Type::String};
+        cout << "types !!!" << endl;
+        std::shared_ptr< std::map< std::string, SqlArg* > > lmap = QueryMap(*con, builder, types);
+        cout << lmap->at("id")->asInt() << " = " << lmap->at("label")->asString()->asStdString() << endl;
 
         builder = SqlBuilder();
         builder += "update test set label = id where id > ? and not (label like ?)";
