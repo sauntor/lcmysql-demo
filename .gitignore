@@ -34,3 +34,11 @@ Makefile
 demo
 .ycm_extra_conf.py
 install_manifest.txt
+lcmysql-demo.kdev4
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+compile_commands.json
+demo
+Makefile
+lcmysql-demo.kdev4

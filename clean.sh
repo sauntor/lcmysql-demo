@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#make clean
 rm -rf ./Makefile 
 rm -rf ./.ycm_extra_conf.py
 rm -rf ./cmake_install.cmake

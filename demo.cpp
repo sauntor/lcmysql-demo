@@ -104,6 +104,8 @@ int main(int argc, const char **argv)
 
 	cout << boolalpha;
 	cout << "# Connector/C++ result set.." << endl;
+    cout << "sizeof(long double) = " << sizeof(long double) << endl;
+    cout << "sizeof(double) = " << sizeof(double) << endl;
 
 	try {
 		/* Using the Driver to create a connection */
@@ -171,13 +173,13 @@ int main(int argc, const char **argv)
         builder = SqlBuilder();
         builder += "update test set label = id where id > ? and not (label like ?)";
         builder << 3 << "; drop table test; '%llo%";
-        std::uint64_t count = Delete(*con, builder);
+        std::uint64_t count = Update(*con, builder);
         cout << "updated count = " << count << endl;
 
         builder = SqlBuilder();
         builder += "delete from test where id < ?";
         builder << 2;
-        count = Update(*con, builder);
+        count = Delete(*con, builder);
         cout << "deleted count = " << count << endl;
 
         cout << "========================" << endl;

@@ -6,6 +6,8 @@ project(demo VERSION 1.0.0 LANGUAGES CXX)
 
 set(CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 11)
+set(C_STANDARD_REQUIRED ON)
+set(CMAKE_C_STANDARD 11)
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
 
@@ -21,4 +23,4 @@ endif()
 add_executable(demo demo.cpp)
 target_link_libraries(demo mysqlcppconn)
 
-install(TARGETS demo RUNTIME DESTINATION ${CMAKE_BINARY_DIR})
+install(TARGETS demo RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/bin)
